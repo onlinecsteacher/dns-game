@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DNS Detective: The School Office Challenge</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;600;700&family=IBM+Plex+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="stage">
+
+  <section id="screen-title" class="screen active">
+    <div class="title-card">
+      <h1>DNS Detective</h1>
+      <h2>The School Office Challenge</h2>
+      <p class="premise">Help as many parents as you can in 60 seconds — but each one only gets one click.</p>
+      <button id="start-btn" class="btn btn-primary">Start</button>
+    </div>
+  </section>
+
+  <section id="screen-round" class="screen">
+    <header class="hud">
+      <div class="hud-item timer">⏱ <span id="time-left">0:60</span> LEFT</div>
+      <div class="hud-item">HELPED: <span id="helped-count">0</span></div>
+      <div class="hud-item">THIS ONE: <span id="question-count">0</span> Q'S</div>
+    </header>
+
+    <div class="round-top">
+      <p id="parent-line" class="parent-line">"I'm looking for my child."</p>
+      <button id="guess-btn" class="btn btn-guess" type="button">Ready to make a guess?</button>
+    </div>
+    <p id="answer-line" class="answer-line" aria-live="polite"></p>
+    <p id="feedback-line" class="feedback-line" aria-live="polite"></p>
+
+    <div id="board" class="board">
+      <div id="grid" class="grid" aria-live="polite"></div>
+      <div id="question-bank" class="question-bank"></div>
+    </div>
+  </section>
+
+  <section id="screen-results" class="screen">
+    <h2>Session Results</h2>
+    <div id="results-summary" class="results-summary"></div>
+
+    <table class="recap-table">
+      <caption>How it maps to real DNS</caption>
+      <thead>
+        <tr><th>Real DNS step</th><th>Office equivalent</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Browser sends a request with no address cached</td><td>Parent says "I'm looking for my child"</td></tr>
+        <tr><td>Recursive resolver does the actual querying</td><td>You, the office helper</td></tr>
+        <tr><td>Root/TLD server narrows to the right category</td><td>Subject question narrows the row</td></tr>
+        <tr><td>Authoritative server narrows to the specific server</td><td>Grade question narrows the column</td></tr>
+        <tr><td>Authoritative server returns the exact IP</td><td>Click the correct card — room number revealed</td></tr>
+        <tr><td>A wrong/stale answer sends the request somewhere broken</td><td>Click the wrong card — parent sent to the wrong room</td></tr>
+        <tr><td>A cached record — no lookup needed</td><td>Parent already states subject and grade</td></tr>
+        <tr><td>A loaded server, time on one query delays the next</td><td>One 60s clock for the whole session</td></tr>
+      </tbody>
+    </table>
+
+    <button id="restart-btn" class="btn btn-primary">Play Again</button>
+  </section>
+
+</div>
+<script src="script.js"></script>
+</body>
+</html>
