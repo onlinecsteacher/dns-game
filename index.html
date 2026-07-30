@@ -29,15 +29,17 @@
     </header>
 
     <div class="round-top">
-      <p id="parent-line" class="parent-line">"I'm looking for my child."</p>
+      <p id="parent-line" class="parent-line">Which class is my child in?</p>
       <button id="guess-btn" class="btn btn-guess" type="button">Ready to make a guess?</button>
     </div>
-    <p id="answer-line" class="answer-line" aria-live="polite"></p>
     <p id="feedback-line" class="feedback-line" aria-live="polite"></p>
 
     <div id="board" class="board">
       <div id="grid" class="grid" aria-live="polite"></div>
-      <div id="question-bank" class="question-bank"></div>
+      <div class="question-bank-col">
+        <h3 class="question-bank-heading">Click a question to narrow down the choices:</h3>
+        <div id="question-bank" class="question-bank"></div>
+      </div>
     </div>
   </section>
 

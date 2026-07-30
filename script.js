@@ -66,7 +66,6 @@ const timeLeftEl = document.getElementById('time-left');
 const helpedCountEl = document.getElementById('helped-count');
 const questionCountEl = document.getElementById('question-count');
 const parentLineEl = document.getElementById('parent-line');
-const answerLineEl = document.getElementById('answer-line');
 const feedbackLineEl = document.getElementById('feedback-line');
 const gridEl = document.getElementById('grid');
 const questionBankEl = document.getElementById('question-bank');
@@ -117,8 +116,6 @@ function startRound() {
   questionCountEl.textContent = round.questionsAsked;
   feedbackLineEl.textContent = '';
   feedbackLineEl.className = 'feedback-line';
-  answerLineEl.textContent = '';
-  answerLineEl.className = 'answer-line';
 
   guessBtnEl.disabled = false;
   guessBtnEl.textContent = 'Ready to make a guess?';
@@ -127,7 +124,7 @@ function startRound() {
   if (round.cached) {
     parentLineEl.textContent = `"I'm looking for my child — she has ${round.answer.name} for ${ordinal(round.answer.grade)} grade ${round.answer.subject}."`;
   } else {
-    parentLineEl.textContent = '"I\'m looking for my child."';
+    parentLineEl.textContent = 'Which class is my child in?';
   }
 
   renderGrid();
@@ -181,9 +178,6 @@ function askQuestion(q, btn) {
   const isYes = q.test(round.answer);
   btn.classList.add(isYes ? 'answered-yes' : 'answered-no');
   btn.textContent = `${q.text} — ${isYes ? 'Yes' : 'No'}`;
-
-  answerLineEl.textContent = isYes ? 'Yes.' : 'No.';
-  answerLineEl.className = `answer-line ${isYes ? 'answer-yes' : 'answer-no'}`;
 
   teachers.forEach((t, i) => {
     if (q.test(t) !== isYes) {
