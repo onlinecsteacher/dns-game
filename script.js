@@ -269,7 +269,6 @@ function endSession() {
 function showResults() {
   const helpedRounds = session.roundLog.filter(r => r.result === 'helped');
   const nonCachedHelped = helpedRounds.filter(r => !r.cached);
-  const cachedHelped = helpedRounds.filter(r => r.cached);
 
   const avgQuestions = nonCachedHelped.length
     ? (nonCachedHelped.reduce((sum, r) => sum + r.questionsAsked, 0) / nonCachedHelped.length).toFixed(1)
@@ -278,8 +277,7 @@ function showResults() {
   resultsSummaryEl.innerHTML = `
     <p>Parents helped: <span class="stat-value">${session.helped}</span></p>
     <p>Parents missed: <span class="stat-value">${session.missed}</span></p>
-    <p>Average questions per helped parent: <span class="stat-value">${avgQuestions}</span></p>
-    <p>Cached rounds solved instantly: <span class="stat-value">${cachedHelped.length}</span></p>
+    <p>Average questions per round: <span class="stat-value">${avgQuestions}</span></p>
   `;
 
   showScreen('results');
